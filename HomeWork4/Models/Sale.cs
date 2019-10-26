@@ -10,5 +10,6 @@ namespace HomeWork4.Models
     {
         public Guid SellerId { get; set; }
         public Guid CustomerId { get; set; }
+        public double Price { get; set; }   
     }
 }

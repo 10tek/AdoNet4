@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Data;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
-using System.Data;
 
 namespace HomeWork4.DataAccess
 {
-    public class Repository<T> : IDisposable where T : Entity
+    public class Repository<T> : IDisposable where T : Entity, new()
     {
         private readonly DbProviderFactory providerFactory;
         private DbConnection connection;
@@ -117,11 +117,8 @@ namespace HomeWork4.DataAccess
             using (DbCommand dbCommand = connection.CreateCommand())
             {
                 List<T> table = new List<T>();
-                var name = typeof(T).Name.ToString();
-                var query = $"Select * From {name};";
+                var query = $"Select * From [{type.Name.ToString()}];";
                 dbCommand.CommandText = query;
-
-                connection.Open();
                 var dbDataReader = dbCommand.ExecuteReader();
 
                 string json = $"[";
