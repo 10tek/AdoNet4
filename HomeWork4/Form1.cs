@@ -67,6 +67,7 @@ namespace HomeWork4
                 foreach (var sale in sales)
                 {
                     stringBuilder.Append($"{++i}) Seller Name: {SeachService.GetSellerName(sellers, sale.SellerId)}\r\n   Customer Name: {SeachService.GetCustomerName(customers, sale.CustomerId)}\r\n   Price: {sale.Price}\r\n");
+                    stringBuilder.Append($"   Sale time: {sale.CreationDate}\r\n");
                 }
                 textBox.Text = stringBuilder.ToString();
             }
